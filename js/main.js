@@ -1,43 +1,58 @@
 
-// Variables
-let fois = prompt(
-    'Est-ce la première fois que vous visitez un website écologique?'
-);
-let produits = prompt('Avez vous déjà acheté un produit écologique?');
-// variables 2
-let entrer = prompt(
-    "Si vous voulez s'inscrire à notre newsletter, entrer votre addrese email"
-);
-let sortir = entrer + " " + "vous êtes maintenant abboné";
+// // Variables
+// let fois = prompt(
+//     'Est-ce la première fois que vous visitez un site écologique?'
+// );
+// let produits = prompt('Avez vous déjà acheté un produit écologique?');
+// let entrer = prompt(
+//     "Si vous voulez vous inscrire à notre newsletter, entrer votre addrese email"
+// );
+// let sortir = entrer + " " + "vous êtes maintenant abonné";
 
-// Condicionales, prompt, alert
-// Pregunta intenté poner console.log () en vez del alert () y no me lo tomaba, nosé si hice algo mal o que onda. 
+// // Condicionales, prompt, alert
+// if (fois && (fois == 'oui' || fois == 'Oui')) {
+//     // Operadores en js
+//     if (produits && (produits == 'oui' || produits == 'Oui')) {
+//         alert(
+//             `Bienvenue sur notre site écolo, nous espérons que vous aimerez nos produits`
+//         );
+//     } else {
+//         alert(
+//             `Bienvenue sur notre site écolo, c'est le moment de votre vie pour commencer le chemin d'une bonne consommation avec zéro déchets`
+//         );
+//     }
+// } else if (fois && (fois == 'non' || fois == 'Non')) {
+//     if (produits && (produits == 'oui' || produits == 'Oui')) {
+//         alert(
+//             `Bienvenue sur notre site écolo, vous faîtes maintenant partis de notre communauté, nous espérons que vous aimerez nos produits et notre message`
+//         );
+//     } else {
+//         alert(
+//             `Bienvenue sur notre site écolo, nous sommes heureux que vous vous intéréssiez à nos produits et que vous rejoigniez notre communauté zéro dechets`
+//         );
+//     }
+// };
 
-if (fois && (fois == 'oui' || fois == 'Oui')) {
-    // Operadores en js
-    if (produits && (produits == 'oui' || produits == 'Oui')) {
-        alert(
-            `Bienvenue à notre site écolo, nous esperons que vous aimerez nos produits`
-        );
-    } else {
-        alert(
-            `Bienvenue à notre site écolo, c'est le moment de votre vie de commencer dans le chemin zéro dechets et de la consommation`
-        );
-    }
-} else if (fois && (fois == 'non' || fois == 'Non')) {
-    if (produits && (produits == 'oui' || produits == 'Oui')) {
-        alert(
-            `Bienvenue à notre site écolo, vous êtes maintenant partie de notre comunity, nous esperons que vous aimerez nos produits et nos informations`
-        );
-    } else {
-        alert(
-            `Bienvenue à notre site écolo, nous sommes heureux de que vous s'interesse de nos produits et de commencer a être partie de la community zéro dechets`
-        );
-    }
-};
-// Lo unico que no me salio fue si la gente pone enter sin escribir nada, osea deja vacio, pensé que era con la opcion entrer == " " pero no me sale
-if (entrer && (entrer == " " || entrer == 'non')) {
-    alert("Vous pouvez re-joindre nous quand vous voulez");
-} else {
-    alert(sortir);
+// if (entrer && (entrer == 'non')) {
+//     alert("Vous pouvez nous rejoindre quand vous voulez");
+// } else if(!entrer) {
+//     alert('Bienvenue sur notre site écolo');
+//     } 
+//     else {
+//     alert(sortir);
+// }
+
+
+// Carrito precios
+let prixProduit = parseFloat(prompt("Entrer le prix dun produit"));
+let fraisDenvoi = 4.5;
+
+function calculerPrixTotal (prixProduit, fraisDenvoi,) {
+    let prixHt = prixProduit + fraisDenvoi;
+    let pourcentageImpots = ((prixHt * 20) / 100);
+    const aditon = (prixHt, pourcentageImpots) => prixHt + pourcentageImpots;
+    let prixTotalTtc = aditon (prixHt, pourcentageImpots);
+    return prixTotalTtc;
 }
+let prixTotalTtc = calculerPrixTotal (prixProduit, fraisDenvoi);
+console.log(prixTotalTtc);

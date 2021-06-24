@@ -1,66 +1,65 @@
 
-// DESAFIO 1 y 2
-// Sinceramente dejé estas variables por el hecho de que las rubricas de la 1era entrega piden muchos prompt y no se me ocurrian la verdad con el precio aue pregunar o poner mucho en prompt
+// // DESAFIO 1 y 2
 
-// Variables
-// Variable veces = Es la primera vez que usted visita un sitio ecologico?
-let fois = prompt(
-    'Est-ce la première fois que vous visitez un site écologique?'
-);
-// Variable productoEcologico = Usted ya ha comprado un producto ecologico? 
-let produitsEco = prompt('Avez vous déjà acheté un produit écologique?');
-// Variable entrada = Si usted quiere inscribirse a nuestro newsletter, ingrese su direccion de email
-let entrer = prompt(
-    "Si vous voulez vous inscrire à notre newsletter, entrer votre addrese email"
-);
-// Variable salida = Entrada + usted esta ahora inscripto 
-let sortir = entrer + " " + "vous êtes maintenant abonné";
+// // Variables
+// // Variable veces = Es la primera vez que usted visita un sitio ecologico?
+// let fois = prompt(
+//     'Est-ce la première fois que vous visitez un site écologique?'
+// );
+// // Variable productoEcologico = Usted ya ha comprado un producto ecologico? 
+// let produitsEco = prompt('Avez vous déjà acheté un produit écologique?');
+// // Variable entrada = Si usted quiere inscribirse a nuestro newsletter, ingrese su direccion de email
+// let entrer = prompt(
+//     "Si vous voulez vous inscrire à notre newsletter, entrer votre addrese email"
+// );
+// // Variable salida = Entrada + usted esta ahora inscripto 
+// let sortir = entrer + " " + "vous êtes maintenant abonné";
 
-// Condicionales, prompt, alert
+// // Condicionales, prompt, alert
 
-// Si veces es si o Si
-if (fois && (fois == 'oui' || fois == 'Oui')) {
-    // Operadores en js
-    // Si productoEcologico es si o Si
-    if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
-        // Bienvenido a nuestro sitio ecologico, nosotros esperamos que a usted le gustaran nuestros productos
-        alert(
-            `Bienvenue sur notre site écolo, nous espérons que vous aimerez nos produits`
-        );
-    } else {
-        // Bienvenido a nuestro sitio ecologico, es el momento de su vida para comenzar el camino de una buena consumacion con cero desechos
-        alert(
-            `Bienvenue sur notre site écolo, c'est le moment de votre vie pour commencer le chemin d'une bonne consommation avec zéro déchets`
-        );
-    }
-    // Si veces es no o No
-} else if (fois && (fois == 'non' || fois == 'Non')) {
-    // Si productoEcologico es no o Non
-    if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
-        // Bienvenido a nuestro sitio ecologico, usted es ahora parte de nuestra comunidad, nosotros esperamos que a usted le gustaran nuestros productos y nuestro mensaje
-        alert(
-            `Bienvenue sur notre site écolo, vous faîtes maintenant partis de notre communauté, nous espérons que vous aimerez nos produits et notre message`
-        );
-    } else {
-        // Bienvenido a nuestro sitio ecologico, nosotros somos felices que usted se haya interesado en nuestros productos y que se una a nuestra comunidad cero desechos.
-        alert(
-            `Bienvenue sur notre site écolo, nous sommes heureux que vous vous intéréssiez à nos produits et que vous rejoigniez notre communauté zéro dechets`
-        );
-    }
-};
-// Si entrada es no
-if (entrer && (entrer == 'non')) {
-    // Usted puede unirse a nosotros cuando quiera
-    alert("Vous pouvez nous rejoindre quand vous voulez");
-    // Si es diferente a entrada
-} else if(!entrer) {
-    // Bienvenido a nuestro sitio ecologico
-    alert('Bienvenue sur notre site écolo');
-    } 
-    else {
-        // Salida
-    alert(sortir);
-}
+// // Si veces es si o Si
+// if (fois && (fois == 'oui' || fois == 'Oui')) {
+//     // Operadores en js
+//     // Si productoEcologico es si o Si
+//     if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
+//         // Bienvenido a nuestro sitio ecologico, nosotros esperamos que a usted le gustaran nuestros productos
+//         alert(
+//             `Bienvenue sur notre site écolo, nous espérons que vous aimerez nos produits`
+//         );
+//     } else {
+//         // Bienvenido a nuestro sitio ecologico, es el momento de su vida para comenzar el camino de una buena consumacion con cero desechos
+//         alert(
+//             `Bienvenue sur notre site écolo, c'est le moment de votre vie pour commencer le chemin d'une bonne consommation avec zéro déchets`
+//         );
+//     }
+//     // Si veces es no o No
+// } else if (fois && (fois == 'non' || fois == 'Non')) {
+//     // Si productoEcologico es no o Non
+//     if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
+//         // Bienvenido a nuestro sitio ecologico, usted es ahora parte de nuestra comunidad, nosotros esperamos que a usted le gustaran nuestros productos y nuestro mensaje
+//         alert(
+//             `Bienvenue sur notre site écolo, vous faîtes maintenant partis de notre communauté, nous espérons que vous aimerez nos produits et notre message`
+//         );
+//     } else {
+//         // Bienvenido a nuestro sitio ecologico, nosotros somos felices que usted se haya interesado en nuestros productos y que se una a nuestra comunidad cero desechos.
+//         alert(
+//             `Bienvenue sur notre site écolo, nous sommes heureux que vous vous intéréssiez à nos produits et que vous rejoigniez notre communauté zéro dechets`
+//         );
+//     }
+// };
+// // Si entrada es no
+// if (entrer && (entrer == 'non')) {
+//     // Usted puede unirse a nosotros cuando quiera
+//     alert("Vous pouvez nous rejoindre quand vous voulez");
+//     // Si es diferente a entrada
+// } else if(!entrer) {
+//     // Bienvenido a nuestro sitio ecologico
+//     alert('Bienvenue sur notre site écolo');
+//     } 
+//     else {
+//         // Salida
+//     alert(sortir);
+// }
 
 
 
@@ -88,9 +87,25 @@ if (entrer && (entrer == 'non')) {
 
 // DESAFIO 4 Y 5 = Primer entrega del proyecto final Objetos y Arrays
 
+// Funciones de LocalStorage
+function getLocalStorage(key) {
+
+    return JSON.parse(localStorage.getItem(key))
+
+}
+
+function saveInLocalStorage(key, item) {
+
+    let stringifiedItem = JSON.stringify(item)
+    localStorage.setItem(key, stringifiedItem)
+
+}
+
 // carrito de compras
 let panier = [];
-console.log(panier.length);
+
+// Lista de productos almacenados en el carrito de compras
+const produitsEnregistres = getLocalStorage('listeProduitsPanier');
 
 // variable de costo de envio
 let fraisDenvoi = 5;
@@ -113,9 +128,8 @@ class Produit {
         // costo de envio
         this.fraisDenvoi = Number(fraisDenvoi);
         // precio sin iva = precio del producto + costo de envio
-        this.prixHt = prixProduit + fraisDenvoi;
         // precio con iva = (precio del producto + costo de envio) *1.20 del iva
-        this.pourcentageImpots = (((prixProduit + fraisDenvoi) * 20) / 100);
+        this.pourcentageImpots = ((prixProduit * 20) / 100);
         this.categorie = categorie;
     }
 
@@ -127,25 +141,25 @@ class Produit {
     getTitle = function () {
         return this.title;
     }
-    // precio sin iva = precio del producto + costo de envio
-    getprixHt = function () {
-        return this.prixProduit + fraisDenvoi;
-    }
+    // // precio sin iva = precio del producto + costo de envio
+    // getprixHt = function () {
+    //     return this.prixProduit + fraisDenvoi;
+    // }
     // precio con iva = (precio del producto + costo de envio) * 1.20 del iva
     getpourcentageImpots = function () {
-        return (((this.prixProduit + fraisDenvoi) * 20) / 100);
+        return ((this.prixProduit * 20) / 100);
     }
     // precio total entre el precio sin iva y el porcentaje de iva
     getPrixTotal = function adition() {
         return {
-            prixHt: (this.prixProduit + fraisDenvoi),
-            pourcentageImpots: (((this.prixProduit + fraisDenvoi) * 20) / 100)
+            prixTtc: (this.prixProduit + this.pourcentageImpots),
+            fraisDenvoi: (fraisDenvoi)
         }
     }
     // precio final del producto con costo de envio e iva incluido
     getPrixFinal = function (qty) {
         return (
-            ((this.prixProduit + fraisDenvoi) + (((this.prixProduit + fraisDenvoi) * 20) / 100)) * qty
+            ((this.prixProduit + this.pourcentageImpots) + fraisDenvoi) * qty
         )
     }
     // cantidad del producto con el precio final
@@ -290,7 +304,9 @@ const produit21 = new Produit(
     'Bébés et Femmes'
 );
 
-// console.log para ver los resultados por consola de los productos producto5
+// console.log para ver los resultados por consola de los productos 
+
+// producto5
 console.log(produit5);
 console.log(produit5.getId());
 console.log(produit5.getAchats(1));
@@ -298,7 +314,7 @@ console.log(produit5.getAchats(1));
 console.log(produit4.getTitle());
 console.log(produit4.getAchats(5));
 // producto6
-console.log(produit6.getPrixTotal());
+console.log(produit6.getPrixFinal(3));
 console.log(produit6.getAchats(3));
 
 // resultados del carrito agregado comienza vacio
@@ -309,7 +325,6 @@ produit1.ajouterAuPanier(2);
 produit5.ajouterAuPanier(4);
 // resultado del carrito final
 console.log(panier);
-
 
 
 // Nuevos arrays para filtrar productos y eliminarlos Array
@@ -348,12 +363,53 @@ let produitAuPanier = [
         categorie: 'Maison'
     }
 ];
-// Probé usando el mismo nombre del array ya creado panier(carrito), que al principio esta vacio y despues le agregue 3 productos, pero no me toma el metodo filter con un array ya creado como panier que supuestamente tiene agregado productos. Por eso invente un nuevo array con algunos productos "agregados" por asi decir para hacer la idea de filtro, pero no me queda super clara la idea, partiendo del console.log(panier) de la linea 310 que ya me figuran agregados los productos, para eliminar alguno de ellos. Nose si me explico, jaja 
 
 // método filter
 let item_a_supprimer = 1;
-let nouveauPanier = produitAuPanier.filter(
+let nouveauPanier = panier.filter(
     (produit) => produit.id !== item_a_supprimer
 );
 // console.log para ver el filtro ya hecho
 console.log(nouveauPanier);
+
+// Aca intenté hacer lo mismo de arriba pero en funcion y no me salio, lo dejo comentado
+// function supprimer(id) {
+//     item_a_supprimer = panier.filter(
+//         (produit) => produit.id !== id);
+//     console.log(item_a_supprimer);
+//         produit (item_a_supprimer);
+// }
+//         produit(panier);
+//     supprimer(4);
+
+
+
+// Guardando productos al carrito
+panier = getLocalStorage('panier') || [];
+panier.push(produit2);
+panier.push(produit7);
+panier.push(produit20);
+panier.push(produit16);
+saveInLocalStorage('listeProduitsPanier', panier);
+console.log(produitsEnregistres);
+localStorage.removeItem('produit7');
+
+
+// Creé el elemento en DOM usando el array mio de produits con todos los 21 productos de la boutique pero no me funciona, me dice algo de Node que no se como solucionarlo, prefiero mandarte asi y que veas aue necesito reforzar, el tema es que ya tengo escrito el html algunas cosas con bootstrap y no quiero que se me desconfigure todo
+let container__boutique = document.createElement("div");
+
+produits.forEach(produit => {
+    container__boutique = `${container__boutique.innerHTML}
+                    <div>
+                        <div
+                            <h4> ${produit.title}
+                                <span>${produit.prix}</span>
+                            </h4>
+                            <button>
+                                <a>${produit.ajouterAuPanier}</a>
+                            </button>
+                        </div>
+                    </div>`
+});
+
+document.body.appendChild(container__boutique);

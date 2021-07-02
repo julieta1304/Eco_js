@@ -1,415 +1,258 @@
-
-// // DESAFIO 1 y 2
-
-// // Variables
-// // Variable veces = Es la primera vez que usted visita un sitio ecologico?
-// let fois = prompt(
-//     'Est-ce la première fois que vous visitez un site écologique?'
-// );
-// // Variable productoEcologico = Usted ya ha comprado un producto ecologico? 
-// let produitsEco = prompt('Avez vous déjà acheté un produit écologique?');
-// // Variable entrada = Si usted quiere inscribirse a nuestro newsletter, ingrese su direccion de email
-// let entrer = prompt(
-//     "Si vous voulez vous inscrire à notre newsletter, entrer votre addrese email"
-// );
-// // Variable salida = Entrada + usted esta ahora inscripto 
-// let sortir = entrer + " " + "vous êtes maintenant abonné";
-
-// // Condicionales, prompt, alert
-
-// // Si veces es si o Si
-// if (fois && (fois == 'oui' || fois == 'Oui')) {
-//     // Operadores en js
-//     // Si productoEcologico es si o Si
-//     if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
-//         // Bienvenido a nuestro sitio ecologico, nosotros esperamos que a usted le gustaran nuestros productos
-//         alert(
-//             `Bienvenue sur notre site écolo, nous espérons que vous aimerez nos produits`
-//         );
-//     } else {
-//         // Bienvenido a nuestro sitio ecologico, es el momento de su vida para comenzar el camino de una buena consumacion con cero desechos
-//         alert(
-//             `Bienvenue sur notre site écolo, c'est le moment de votre vie pour commencer le chemin d'une bonne consommation avec zéro déchets`
-//         );
-//     }
-//     // Si veces es no o No
-// } else if (fois && (fois == 'non' || fois == 'Non')) {
-//     // Si productoEcologico es no o Non
-//     if (produitsEco && (produitsEco == 'oui' || produitsEco == 'Oui')) {
-//         // Bienvenido a nuestro sitio ecologico, usted es ahora parte de nuestra comunidad, nosotros esperamos que a usted le gustaran nuestros productos y nuestro mensaje
-//         alert(
-//             `Bienvenue sur notre site écolo, vous faîtes maintenant partis de notre communauté, nous espérons que vous aimerez nos produits et notre message`
-//         );
-//     } else {
-//         // Bienvenido a nuestro sitio ecologico, nosotros somos felices que usted se haya interesado en nuestros productos y que se una a nuestra comunidad cero desechos.
-//         alert(
-//             `Bienvenue sur notre site écolo, nous sommes heureux que vous vous intéréssiez à nos produits et que vous rejoigniez notre communauté zéro dechets`
-//         );
-//     }
-// };
-// // Si entrada es no
-// if (entrer && (entrer == 'non')) {
-//     // Usted puede unirse a nosotros cuando quiera
-//     alert("Vous pouvez nous rejoindre quand vous voulez");
-//     // Si es diferente a entrada
-// } else if(!entrer) {
-//     // Bienvenido a nuestro sitio ecologico
-//     alert('Bienvenue sur notre site écolo');
-//     } 
-//     else {
-//         // Salida
-//     alert(sortir);
-// }
-
-
-
-// ---------------------------
-
-// DESAFIO 3
-
-// // Carrito precios
-// let prixProduit = parseFloat(prompt("Entrer le prix dun produit"));
-// let fraisDenvoi = 4.5;
-
-// function calculerPrixTotal (prixProduit, fraisDenvoi,) {
-//     let prixHt = prixProduit + fraisDenvoi;
-//     let pourcentageImpots = ((prixHt * 20) / 100);
-//     const aditon = (prixHt, pourcentageImpots) => prixHt + pourcentageImpots;
-//     let prixTotalTtc = aditon (prixHt, pourcentageImpots);
-//     return prixTotalTtc;
-// }
-// let prixTotalTtc = calculerPrixTotal (prixProduit, fraisDenvoi);
-// console.log(prixTotalTtc);
-
-// ------------------------------------------------------------------
-
-
-
-// DESAFIO 4 Y 5 = Primer entrega del proyecto final Objetos y Arrays
+// Se carga primer en la ventana
+window.onload = () => {
+    renderProduits(produits);
+    renderPanier(panier);
+    const btnAjouterAuPanier = document.querySelectorAll('.container__home--button');
+    btnAjouterAuPanier.forEach(btn => btn.addEventListener('click', AjouterAuPanier));
+}
 
 // Funciones de LocalStorage
 function getLocalStorage(key) {
-
     return JSON.parse(localStorage.getItem(key))
-
 }
 
 function saveInLocalStorage(key, item) {
-
     let stringifiedItem = JSON.stringify(item)
     localStorage.setItem(key, stringifiedItem)
-
 }
 
-// carrito de compras
-let panier = [];
-
-// Lista de productos almacenados en el carrito de compras
-const produitsEnregistres = getLocalStorage('listeProduitsPanier');
-
-// variable de costo de envio
-let fraisDenvoi = 5;
-
-// Objeto personalizado de producto
-class Produit {
-
-    // distintas propiedas del objeto
-    constructor(id, title, prixProduit, stock, fraisDenvoi, categorie) {
-        // numero de identificacion del producto
-        this.id = id;
-        // titulo del producto
-        this.title = title
-            .toUpperCase()
-            .trim();
-        // precio base del producto
-        this.prixProduit = parseFloat(prixProduit);
-        // numero de stock
-        this.stock = parseInt(stock);
-        // costo de envio
-        this.fraisDenvoi = Number(fraisDenvoi);
-        // precio sin iva = precio del producto + costo de envio
-        // precio con iva = (precio del producto + costo de envio) *1.20 del iva
-        this.pourcentageImpots = ((prixProduit * 20) / 100);
-        this.categorie = categorie;
-    }
-
-    // distintos tipos de métodos numero de identificacion del producto
-    getId = function () {
-        return this.id;
-    }
-    // titulo del producto
-    getTitle = function () {
-        return this.title;
-    }
-    // // precio sin iva = precio del producto + costo de envio
-    // getprixHt = function () {
-    //     return this.prixProduit + fraisDenvoi;
-    // }
-    // precio con iva = (precio del producto + costo de envio) * 1.20 del iva
-    getpourcentageImpots = function () {
-        return ((this.prixProduit * 20) / 100);
-    }
-    // precio total entre el precio sin iva y el porcentaje de iva
-    getPrixTotal = function adition() {
-        return {
-            prixTtc: (this.prixProduit + this.pourcentageImpots),
-            fraisDenvoi: (fraisDenvoi)
-        }
-    }
-    // precio final del producto con costo de envio e iva incluido
-    getPrixFinal = function (qty) {
-        return (
-            ((this.prixProduit + this.pourcentageImpots) + fraisDenvoi) * qty
-        )
-    }
-    // cantidad del producto con el precio final
-    getAchats = function (qty) {
-        return {produit: this, quantités: qty, montant: this.getPrixFinal(qty)}
-    }
-    // agregar producto al carrito de compras
-    ajouterAuPanier = function (qty) {
-        panier.push(this.getAchats(qty));
-    }
-}
-
-// array de produits
+// Mi base de datos de todos los productos existentes en la boutique
 const produits = [
-    'produit1',
-    'produit2',
-    'produit3',
-    'produit4',
-    'produit5',
-    'produit6',
-    'produit7',
-    'produit8',
-    'produit9',
-    'produit10',
-    'produit11',
-    'produit12',
-    'produit13',
-    'produit14',
-    'produit15',
-    'produit16',
-    'produit17',
-    'produit18',
-    'produit19',
-    'produit20',
-    'produit21'
-];
-// resultados en consola con el uso de métodos comunes como join y length
-console.log(produits.join("-"));
-console.log(produits.length);
-
-// referencias del objeto personalizado. Lista de todos los productos
-// Salle de Bains
-const produit1 = new Produit(1, 'Brosse à dents', 7.5, 24, 5, 'Salle de Bains');
-const produit2 = new Produit(2, 'Savon de main', 4.80, 10, 5, 'Salle de Bains');
-const produit3 = new Produit(3, 'Gel de douche', 9.25, 15, 5, 'Salle de Bains');
-const produit4 = new Produit(
-    4,
-    'Éponge de luffa',
-    5.50,
-    5,
-    5,
-    'Salle de Bains'
-);
-const produit5 = new Produit(5, 'Shampooing', 10.50, 18, 5, 'Salle de Bains');
-const produit6 = new Produit(
-    6,
-    'Àprès shampooing',
-    12.80,
-    7,
-    5,
-    'Salle de Bains'
-);
-// Cuisine
-const produit7 = new Produit(7, 'Éponge de coco', 14.35, 9, 5, 'Cuisine');
-const produit8 = new Produit(
-    8,
-    'Brosse vaisselle bois',
-    3.25,
-    22,
-    5,
-    'Cuisine'
-);
-const produit9 = new Produit(
-    9,
-    'Savon solide vaisselle',
-    4.50,
-    8,
-    5,
-    'Cuisine'
-);
-const produit10 = new Produit(
-    10,
-    'Pailles réutilisables',
-    11.75,
-    17,
-    5,
-    'Cuisine'
-);
-const produit11 = new Produit(11, 'Capsules à Café', 27.25, 50, 5, 'Cuisine');
-const produit12 = new Produit(12, 'Bee Wraps', 22.90, 11, 5, 'Cuisine');
-// Maison
-const produit13 = new Produit(13, 'Sac réutilisables', 17.40, 38, 5, 'Maison');
-const produit14 = new Produit(14, 'Les gargouilles', 35, 14, 5, 'Maison');
-const produit15 = new Produit(15, 'Sprays nettoyants', 28.50, 20, 5, 'Maison');
-// Bébés et Femmes
-const produit16 = new Produit(
-    16,
-    'Couches bébé lavables',
-    12.50,
-    16,
-    5,
-    'Bébés et Femmes'
-);
-const produit17 = new Produit(
-    17,
-    'Bavoir en silicone',
-    10.65,
-    8,
-    5,
-    'Bébés et Femmes'
-);
-const produit18 = new Produit(
-    18,
-    'Vaiselle bébé',
-    18.75,
-    3,
-    5,
-    'Bébés et Femmes'
-);
-const produit19 = new Produit(
-    19,
-    'Soucette bébé',
-    7.25,
-    32,
-    5,
-    'Bébés et Femmes'
-);
-const produit20 = new Produit(
-    20,
-    'Cup menstruelle',
-    22.50,
-    43,
-    5,
-    'Bébés et Femmes'
-);
-const produit21 = new Produit(
-    21,
-    'Serviette menstruelle',
-    13.25,
-    37,
-    5,
-    'Bébés et Femmes'
-);
-
-// console.log para ver los resultados por consola de los productos 
-
-// producto5
-console.log(produit5);
-console.log(produit5.getId());
-console.log(produit5.getAchats(1));
-// producto4
-console.log(produit4.getTitle());
-console.log(produit4.getAchats(5));
-// producto6
-console.log(produit6.getPrixFinal(3));
-console.log(produit6.getAchats(3));
-
-// resultados del carrito agregado comienza vacio
-console.log(panier);
-// se agregan productos
-produit4.ajouterAuPanier(1);
-produit1.ajouterAuPanier(2);
-produit5.ajouterAuPanier(4);
-// resultado del carrito final
-console.log(panier);
-
-
-// Nuevos arrays para filtrar productos y eliminarlos Array
-let produitAuPanier = [
+    // Productos del Baño
     {
-        title: 'Brosse à dents',
         id: 1,
+        nom: 'Brosse à dents',
+        prix: 7.5,
+        stock: 15,
+        fraisDenvoi: 5,
         categorie: 'Salle de Bains'
     }, {
-        title: 'Éponge de luffa',
+        id: 2,
+        nom: 'Savon de main',
+        prix: 4.80,
+        stock: 10,
+        fraisDenvoi: 5,
+        categorie: 'Salle de Bains'
+    }, {
+        id: 3,
+        nom: 'Gel de douche',
+        prix: 9.25,
+        stock: 15,
+        fraisDenvoi: 5,
+        categorie: 'Salle de Bains'
+    }, {
         id: 4,
+        nom: 'Éponge de luffa',
+        prix: 5.50,
+        stock: 5,
+        fraisDenvoi: 5,
         categorie: 'Salle de Bains'
     }, {
-        title: 'Shampooing',
         id: 5,
+        nom: 'Shampooing',
+        prix: 10.50,
+        stock: 18,
+        fraisDenvoi: 5,
         categorie: 'Salle de Bains'
     }, {
-        title: 'Cup menstruelle',
-        id: 20,
-        categorie: 'Bébés et Femmes'
-    }, {
-        title: 'Couches bébé lavables',
-        id: 16,
-        categorie: 'Bébés et Femmes'
-    }, {
-        title: 'Capsules à Café',
-        id: 11,
+        id: 6,
+        nom: 'Àprès shampooing',
+        prix: 12.80,
+        stock: 7,
+        fraisDenvoi: 5,
+        categorie: 'Salle de Bains'
+    },
+    // Productos de la Cocina
+    {
+        id: 7,
+        nom: 'Éponge de coco',
+        prix: 14.35,
+        stock: 9,
+        fraisDenvoi: 5,
         categorie: 'Cuisine'
     }, {
-        title: 'Brosse vaisselle bois',
         id: 8,
+        nom: 'Brosse vaisselle bois',
+        prix: 3.25,
+        stock: 22,
+        fraisDenvoi: 5,
         categorie: 'Cuisine'
     }, {
-        title: 'Sprays nettoyants',
-        id: 15,
+        id: 9,
+        nom: 'Savon solide vaisselle',
+        prix: 4.50,
+        stock: 8,
+        fraisDenvoi: 5,
+        categorie: 'Cuisine'
+    }, {
+        id: 10,
+        nom: 'Pailles réutilisables',
+        prix: 11.75,
+        stock: 17,
+        fraisDenvoi: 5,
+        categorie: 'Cuisine'
+    }, {
+        id: 11,
+        nom: 'Capsules à Café',
+        prix: 27.25,
+        stock: 50,
+        fraisDenvoi: 5,
+        categorie: 'Cuisine'
+    }, {
+        id: 12,
+        nom: 'Bee Wraps',
+        prix: 22.90,
+        stock: 11,
+        fraisDenvoi: 5,
+        categorie: 'Cuisine'
+    },
+    // Productos de la Casa
+    {
+        id: 13,
+        nom: 'Sac réutilisables',
+        prix: 17.40,
+        stock: 38,
+        fraisDenvoi: 5,
         categorie: 'Maison'
+    }, {
+        id: 14,
+        nom: 'Les gargouilles',
+        prix: 35,
+        stock: 14,
+        fraisDenvoi: 5,
+        categorie: 'Maison'
+    }, {
+        id: 15,
+        nom: 'Sprays nettoyants',
+        prix: 28.50,
+        stock: 20,
+        fraisDenvoi: 5,
+        categorie: 'Maison'
+    },
+    // Productos de Bebés y Mujeres
+    {
+        id: 16,
+        nom: 'Couches bébé lavables',
+        prix: 12.50,
+        stock: 16,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
+    }, {
+        id: 17,
+        nom: 'Bavoir en silicone',
+        prix: 10.65,
+        stock: 8,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
+    }, {
+        id: 18,
+        nom: 'Vaiselle bébé',
+        prix: 18.75,
+        stock: 3,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
+    }, {
+        id: 19,
+        nom: 'Soucette bébé',
+        prix: 7.25,
+        stock: 32,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
+    }, {
+        id: 20,
+        nom: 'Cup menstruelle',
+        prix: 22.50,
+        stock: 43,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
+    }, {
+        id: 21,
+        nom: 'Serviette menstruelle',
+        prix: 13.25,
+        stock: 37,
+        fraisDenvoi: 5,
+        categorie: 'Bébés et Femmes'
     }
-];
-
-// método filter
-let item_a_supprimer = 1;
-let nouveauPanier = panier.filter(
-    (produit) => produit.id !== item_a_supprimer
-);
-// console.log para ver el filtro ya hecho
-console.log(nouveauPanier);
-
-// Aca intenté hacer lo mismo de arriba pero en funcion y no me salio, lo dejo comentado
-// function supprimer(id) {
-//     item_a_supprimer = panier.filter(
-//         (produit) => produit.id !== id);
-//     console.log(item_a_supprimer);
-//         produit (item_a_supprimer);
-// }
-//         produit(panier);
-//     supprimer(4);
-
-
-
-// Guardando productos al carrito
-panier = getLocalStorage('panier') || [];
-panier.push(produit2);
-panier.push(produit7);
-panier.push(produit20);
-panier.push(produit16);
-saveInLocalStorage('listeProduitsPanier', panier);
-console.log(produitsEnregistres);
-localStorage.removeItem('produit7');
-
-
-// Creé el elemento en DOM usando el array mio de produits con todos los 21 productos de la boutique pero no me funciona, me dice algo de Node que no se como solucionarlo, prefiero mandarte asi y que veas aue necesito reforzar, el tema es que ya tengo escrito el html algunas cosas con bootstrap y no quiero que se me desconfigure todo
-let container__boutique = document.createElement("div");
-
-produits.forEach(produit => {
-    container__boutique = `${container__boutique.innerHTML}
-                    <div>
-                        <div
-                            <h4> ${produit.title}
+]
+// array donde se guardan los productos que vamos seleccionando
+let panier = [];
+// Arrow function, interaccion con el HTML
+const renderProduits = produits => {
+    const produitsDiv = document.querySelector('div');
+    //Si el parametro está vacio o es undefined
+    if (!produits || produits.length === 0) {
+        produitsDiv.innerHTML = `<p> Panier vide - Aucun produits </p>`
+        return;
+    }
+    produitsDiv.innerHTML = '';
+    let container = '';
+    // En cada producto del parametro productos se le agrega un contenido que se va a repetir en c/u
+    produits.forEach(produit => {
+        container += `
+                    <div class="container__boutique--card img-${produit.id} col-sm-12 col-md-6 col-lg-4">
+                        <div class="card-body">
+                            <h4 class="container__boutique--card-title">
+                                ${produit.nom}
                                 <span>${produit.prix}</span>
                             </h4>
-                            <button>
-                                <a>${produit.ajouterAuPanier}</a>
+                            <button type="button" class="container__home--button" required="required">
+                                <a class="card-btn" id='${produit.id}' href="../pages/panier.html">
+                                    Ajouter au panier
+                                </a>
                             </button>
                         </div>
-                    </div>`
-});
+                    </div>
+        `;
+    });
+    // Ahora se puede observar que quedo cargado el contenido en la variable creada
+    produitsDiv.innerHTML = container;
+}
 
-document.body.appendChild(container__boutique);
+// Arrow function para agregar productos al carrito de compras
+const AjouterAuPanier = evenement => {
+    const idDuProduitAchercher = evenement.target.value;
+    const chercherProduitDB = produits.find(
+        element => element.id === idDuProduitAchercher
+    );
+    panier = getLocalStorage('panier') || [];
+    console.log(panier);
+    panier.push(chercherProduitDB);
+    saveInLocalStorage('listeProduitsPanier', panier);
+    console.log(panier);
+    renderPanier(panier);
+}
+// Se muestran los productos en el HTML
+const renderPanier = produits => {
+    const panierDiv = document.querySelector('.panier');
+    //Si el parametro está vacio o es undefined
+    if (!produits || produits.length === 0) {
+        panierDiv.innerHTML = '<p> Panier vide - Aucun produits </p>'
+        return;
+    }
+    panierDiv.innerHTML = '';
+    let html = '';
+    produits.forEach(produit => {
+        html += `
+        <div class="produitsBoutique">
+            <h2>${produit.nom}</h2>
+            <button class="btn-supprimer" onclick="supprimerAuPanier('${produit.id}')">X</button>
+        </div>
+        `;
+    });
+    panierDiv.innerHTML = html;
+}
+// Eliminar productos del carrito de compras
+const supprimerAuPanier = id => {
+    console.log(panier)
+    const chercherProduitAuPanier = panier.filter(
+        produit => produit.id !== id
+    );
+    console.log(
+        'Carrito sin el producto que eliminaste: ',
+        chercherProduitAuPanier
+    );
+    //Se modifica el carrito original con el nuevo array;
+    panier = chercherProduitAuPanier;
+    localStorage.removeItem(chercherProduitAuPanier);
+    renderPanier(panier);
+}

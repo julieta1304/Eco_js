@@ -339,6 +339,9 @@ main .container .container__boutique {
     font-family: "Comfortaa", cursive;
     font-style: italic;
     font-weight: normal; }
+  main .container .container__boutique form .btnBoutique {
+    text-align: right !important;
+    margin-bottom: 1rem !important; }
   main .container .container__boutique .container__boutique--card {
     background-color: #b6d7a8;
     border: solid 1px #3b9655;
@@ -359,11 +362,13 @@ main .container .container__home--button {
   background-color: #296b3c;
   border: 1px solid #3b9655;
   border-radius: 0.6em;
+  color: white !important;
   font-family: "Handlee", cursive;
   font-style: normal;
   font-size: 1.2rem;
   font-weight: lighter;
   margin-top: 2;
+  margin-right: 1rem;
   float: left;
   width: fit-content;
   padding: 0.2em;

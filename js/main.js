@@ -1,26 +1,39 @@
 
-// Bueno intenté descubrir porqué no me toma el produit.id de la linea 260 y creo que es porque apreto el boton de agregar al carrito se pushea como objeto y no me toma el id de adento entonces me lo muestra como null y creo que por eso depues no encuentra el id, nombre, precio y todo. Debe ser un error chiquito pero no me voy cuenta que toquetear
-
-
-
-// Se carga primer en la ventana
+// Cuando aprieta los botones por categoria para filtrar funciona pero despues cundo quiero agregar el producto no lo agrega solo cuando estan todos los productos si 
 window.onload = () => {
     renderProduits(produits);
     // boton agregar al carrito con evento
     const btnAjouterAuPanier = document.querySelectorAll(
-        '.container__home--button'
+        '.btnAjouterPanier'
     );
     btnAjouterAuPanier.forEach(
-        (btn) => btn.addEventListener("click", (e) => ajouterAuPanier(e))
+        (btn) => btn.addEventListener("click", (id) => ajouterAuPanier(id))
     );
     // boton eliminar del carrito con evento
     const btnSupprimerAuPanier = document.querySelectorAll(
-        '.container__home--button'
+        '.btnSupprimerPanier'
     );
     btnSupprimerAuPanier.forEach(
-        (btn) => btn.addEventListener("click", (id) => supprimerAuPanier(id))
+        (btn) => btn.addEventListener("click", (id) => supprimerAuPanier(id)),
+    );
+    const btnSupprimer = document.querySelectorAll(
+        'btnSupprimer'
+    );
+    // Aca crée el boton de eliminar pero no me esta tomando la funcion ni el estilo de css como todos los botones, nosé que onda
+    btnSupprimer.forEach(
+        (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
     );
 }
+// Método ajax
+$.ajax({
+    method: 'GET',
+    // Mi array de productos como base de datos en JSON
+    url: '../js/produits.json',
+}).done((produits) => {
+    console.log(produits);
+}).fail((erreur) => {
+    console.log(erreur);
+});
 
 // Funciones de LocalStorage
 function getLocalStorage(key) {
@@ -31,7 +44,8 @@ function saveInLocalStorage(key, item) {
     localStorage.setItem(key, stringifiedItem)
 }
 
-// Mi base de datos de todos los productos existentes en la boutique Array de productos y cada uno con sus objetos
+// Mi base de datos de todos los productos existentes en la boutique Array de
+// productos y cada uno con sus objetos
 const produits = [
     // Productos del Baño
     {
@@ -195,13 +209,14 @@ let panier = getLocalStorage("listeProduitsPanier") || [];
 console.log(panier);
 
 // Interaccion con el HTML para renderizar productos
-const renderProduits = (produits) => {
+let renderProduits = (produits) => {
     const produitsDiv = document.getElementById("60");
     //Si el parametro está vacio o es undefined
     if (produitsDiv) {
         produitsDiv.innerHTML = "";
         let container = "";
-        // En cada producto de productos se le agrega un contenido que se va a repetir en c/u
+        // En cada producto de productos se le agrega un contenido que se va a repetir
+        // en c/u
         produits.forEach((produit) => {
             container = `<div class="container__boutique--card img-prod${produit.id} col-sm-12 col-md-6 col-lg-4">
                             <div class="card-body">
@@ -209,10 +224,10 @@ const renderProduits = (produits) => {
                                     ${produit.nom}
                                     <span>${produit.prix}€</span>
                                 </h4>
-                                <button type="button" id="btnAjouterAuPanier" class="container__home--button" required="required">
+                                <button type="button" id="btnAjouterAuPanier" value=${produit.id} class="btnAjouterPanier container__home--button" required="required">
                                         Ajouter au panier
                                 </button>
-                                <button type="button" id="btnSupprimerAuPanier" class="container__home--button" required="required">
+                                <button type="button" id="btnSupprimerAuPanier" value=${produit.id}class="btnSupprimerPanier container__home--button" required="required">
                                         Supprimer
                                 </button>
                             </div>
@@ -221,90 +236,128 @@ const renderProduits = (produits) => {
         });
     }
 };
-console.log(panier);
-console.log(produits);
-
-
 // Funcion para agregar productos al carrito de compras
-const ajouterAuPanier = (evenement) => {
-    const idDuProduitAchercher = evenement.target.id;
+const ajouterAuPanier = (id) => {
+    const idDuProduitAchercher = id.target.value;
     const chercherProduitDB = produits.find(
         (produit) => produit.id == idDuProduitAchercher
     );
+    console.log(id.target.value);
     panier.push(chercherProduitDB);
     saveInLocalStorage("listeProduitsPanier", panier);
+    renderPanier(panier)
 };
 console.log(panier);
 
 // Renderizar los productos cargados al carrito en el HTML
-const renderPanier = (produits) => {
+const renderPanier = (panier) => {
     const panierDiv = document.getElementById("80");
     //Si el parametro está vacio o es undefined
     if (panierDiv) {
         panierDiv.innerHTML = "";
         let html = "";
-        if (!produits || produits.length === 0) {
-            // Esta parte no la veo escrita en ningun lado lo ideal seria que aparezca en el carrito cuando no haya nada 
+        if (!panier || panier.length === 0) {
+            // carrito cuando no haya nada
             panierDiv.innerHTML = `<p> Panier vide - Aucun produit </p>`;
             return;
         }
-        // Aca no sé que pasa que me toma como null los valores de mi array productos, nose si es porque dentro de mi array tengo objetos?
-        produits.forEach(produit => {
+        // No sé al final aca como poner que total quede en la ventana del carrito pero solo uno en general, porque si lo pongo en el for each es a cada producto
+        panier.forEach(produit => {
             html = `
             <div class="produitsPanier text-center col-sm-12 col-md-6 col-lg-4">
-                <h3>
+                <h4>
                 ${produit.nom}
-                </h3>
+                </h4>
                 <p>${produit.prix}€</p>
-                <button type="button" class="container__home--button btn-supprimer" onclick="supprimerAuPanier('${produit.id}')">Supprimer</button>
+                <button type="button" class="btnSupprimer container__home--button" value=${produit.id}">Supprimer</button>
             </div>
             `;
             panierDiv.innerHTML += html;
         });
+        console.log(panier);
     }
 };
 console.log(panier);
-
-
 // Funcion para eliminar productos del carrito de compras
 const supprimerAuPanier = (id) => {
-    const chercherProduitAuPanier= panier.filter(produit => produit.id !== id);
+    const chercherProduitAuPanier = panier.filter(produit => produit.id != id.target.value);
+    console.log(chercherProduitAuPanier);
     //Se modifica el carrito original con el nuevo array;
     panier = chercherProduitAuPanier;
+    console.log(panier);
     localStorage.removeItem(chercherProduitAuPanier);
     renderPanier(panier);
+    console.log(id.target.value);
 }
 console.log(panier);
 
-
 // jQuery, se crean 4 botones para poder filtrar los productos por categorias
-
 // Boton del Baño con selector avanzado
 const boutonSalleDeBains = $('form button:first-child');
-console.log(boutonSalleDeBains);
-
 // Boton de la Cocina con selector combinacion
 const boutonCuisine = $('form #cuisine');
-console.log(boutonCuisine);
-
 // Boton de la Casa con selector combinacion
 const boutonMaison = $('form #maison');
-console.log(boutonMaison);
-
 // Boton Bebés y Mujeres con selector avanzado
-const boutonBebesEtFemmes = $('form button:last-child');
-console.log(boutonBebesEtFemmes);
-
+const boutonBebesEtFemmes = $('form #bebesEtFemmes');
+// Boton de todos los productos
+const boutonTousLesProduits = $('form button:last-child');
 
 // Agregar método on click a los botones utilizando jQuery
+$('#bouton').click (function renderProduits(produits) {
+    produits.preventDefault();
+    console.log(produits);
+})
 $('#bouton').click(function produitsPourCategorie(value) {
-    console.log(value.target);
+    value.preventDefault();
+    filterCategories = produits.filter(
+        (produit) => produit.categorie == value.target.value
+    );
+    renderProduits();
 });
-
-// filtrar productos por categoria
-    const produitsPourCategorie= (value) => {
-    const filterProduitsPourCategorie= produits.filter(produit => produit.categorie !== value);
-    produits = filterProduitsPourCategorie;
-    renderProduits(filterProduitsPourCategorie);
-    console.log(filterProduitsPourCategorie);
-}
+let filterCategories= [];
+renderProduits = () => {
+    const produitsDiv = document.getElementById("60");
+    if (produitsDiv) {
+        produitsDiv.innerHTML = "";
+        let container = "";
+        if (filterCategories.length === 0) {
+            produits.forEach((produit) => {
+                container = `<div class="container__boutique--card img-prod${produit.id} col-sm-12 col-md-6 col-lg-4">
+                <div class="card-body">
+                    <h4 class="container__boutique--card-title">
+                        ${produit.nom}
+                        <span>${produit.prix}€</span>
+                    </h4>
+                    <button type="button" id="btnAjouterAuPanier" value=${produit.id} class="container__home--button btnAjouterPanier" required="required">
+                            Ajouter au panier
+                    </button>
+                    <button type="button" id="btnSupprimerAuPanier" value=${produit.id} class="container__home--button btnSupprimerPanier" required="required">
+                            Supprimer
+                    </button>
+                </div>
+            </div> `;
+                produitsDiv.innerHTML += container;
+            });
+        } else {
+            console.log("entro");
+            filterCategories.forEach((produit) => {
+                container = `<div class="container__boutique--card img-prod${produit.id} col-sm-12 col-md-6 col-lg-4">
+                                <div class="card-body">
+                                    <h4 class="container__boutique--card-title">
+                                        ${produit.nom}
+                                        <span>${produit.prix}€</span>
+                                    </h4>
+                                    <button type="button" id="btnAjouterAuPanier" value=${produit.id} class="container__home--button btnAjouterPanier" required="required">
+                                            Ajouter au panier
+                                    </button>
+                                    <button type="button" id="btnSupprimerAuPanier" value=${produit.id} class="container__home--button btnSupprimerPanier" required="required">
+                                            Supprimer
+                                    </button>
+                                </div>
+                            </div> `;
+                produitsDiv.innerHTML += container;
+            });
+        }
+    }
+};

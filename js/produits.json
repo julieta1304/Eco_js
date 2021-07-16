@@ -1,0 +1,153 @@
+[
+    {
+        "id": "1",
+        "nom": "Brosse à dents",
+        "prix": "7.5",
+        "stock": "15",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    }, {
+        "id": "2",
+        "nom": "Savon de main",
+        "prix": "4.80",
+        "stock": "10",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    }, {
+        "id": "3",
+        "nom": "Gel de douche",
+        "prix": 9.25,
+        "stock": "15",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    }, {
+        "id": "4",
+        "nom": "Éponge de luffa",
+        "prix": "5.50",
+        "stock": "5",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    }, {
+        "id": "5",
+        "nom": "Shampooing",
+        "prix": "10.50",
+        "stock": "18",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    }, {
+        "id": "6",
+        "nom": "Àprès shampooing",
+        "prix": 12.80,
+        "stock": "7",
+        "fraisDenvoi": "5",
+        "categorie": "Salle de Bains"
+    },
+    {
+        "id": "7",
+        "nom": "Éponge de coco",
+        "prix": 14.35,
+        "stock": "9",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    }, {
+        "id": "8",
+        "nom": "Brosse vaisselle bois",
+        "prix": "3.25",
+        "stock": "22",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    }, {
+        "id": "9",
+        "nom": "Savon solide vaisselle",
+        "prix": "4.50",
+        "stock": "8",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    }, {
+        "id": "10",
+        "nom": "Pailles réutilisables",
+        "prix": "11.75",
+        "stock": "17",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    }, {
+        "id": "11",
+        "nom": "Capsules à Café",
+        "prix": "27.25",
+        "stock": "50",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    }, {
+        "id": "12",
+        "nom": "Bee Wraps",
+        "prix": "22.90",
+        "stock": "11",
+        "fraisDenvoi": "5",
+        "categorie": "Cuisine"
+    },
+    {
+        "id": "13",
+        "nom": "Sac réutilisables",
+        "prix": "17.40",
+        "stock": "38",
+        "fraisDenvoi": "5",
+        "categorie": "Maison"
+    }, {
+        "id": "14",
+        "nom": "Les gargouilles",
+        "prix": "35",
+        "stock": "14",
+        "fraisDenvoi": "5",
+        "categorie": "Maison"
+    }, {
+        "id": "15",
+        "nom": "Sprays nettoyants",
+        "prix": "28.50",
+        "stock": "20",
+        "fraisDenvoi": "5",
+        "categorie": "Maison"
+    },
+    {
+        "id": "16",
+        "nom": "Couches bébé lavables",
+        "prix": 12.50,
+        "stock": "16",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }, {
+        "id": "17",
+        "nom": "Bavoir en silicone",
+        "prix": "10.65",
+        "stock": "8",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }, {
+        "id": "18",
+        "nom": "Vaiselle bébé",
+        "prix": "18.75",
+        "stock": "3",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }, {
+        "id": "19",
+        "nom": "Soucette bébé",
+        "prix": "7.25",
+        "stock": "32",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }, {
+        "id": "20",
+        "nom": "Cup menstruelle",
+        "prix": "22.50",
+        "stock": "43",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }, {
+        "id": "21",
+        "nom": "Serviette menstruelle",
+        "prix": "13.25",
+        "stock": "37",
+        "fraisDenvoi": "5",
+        "categorie": "Bébés et Femmes"
+    }
+]

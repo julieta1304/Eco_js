@@ -125,10 +125,10 @@
 
                                         <div class="dropdown-menu text-center" id="80" aria-labelledby="navbarDropdown">
                                             <div class="produitsPanier text-center col-12">
-                                                <h3>
-                                                </h3>
+                                                <h4>
+                                                </h4>
                                                 <p>€</p>
-                                                <button type="button" class="container__home--button btn-supprimer">Supprimer</button>
+                                                <button type="button" class="btnSupprimer container__home--button" id="supprimerPanier">Supprimer</button>
                                             </div>
                                         </div>
 
@@ -159,10 +159,11 @@
                     </h2>
 
                     <form id="bouton" class="text-center">
-                        <button id="salleDeBains" value="salleDeBains" class="btnBoutique container__home--button">Salle de Bains</button>
-                        <button id="cuisine" value="cuisine" class="btnBoutique container__home--button">Cuisine</button>
-                        <button id="maison" value="maison" class="btnBoutique container__home--button">Maison</button>
-                        <button id="bebesEtFemmes" value="bebesEtFemmes" class="btnBoutique container__home--button">Bébés et Femmes</button>
+                        <button id="salleDeBains" value="Salle de Bains" class="btnBoutique container__home--button">Salle de Bains</button>
+                        <button id="cuisine" value="Cuisine" class="btnBoutique container__home--button">Cuisine</button>
+                        <button id="maison" value="Maison" class="btnBoutique container__home--button">Maison</button>
+                        <button id="bebesEtFemmes" value="Bébés et Femmes" class="btnBoutique container__home--button">Bébés et Femmes</button>
+                        <button id="tousLesProduits" value="Tous les produits" class="btnBoutique container__home--button">Tous les produits</button>
                     </form>
                 </div>
 
@@ -177,7 +178,7 @@
                                 <span></span>
                             </h4>
                             <!-- BUTTON PRODUCT 1 -->
-                            <button type="button" class="container__home--button" required="required">
+                            <button type="button" class="container__home--button btnAjouterPanier" id="ajouterPanier" required="required">
                                 Ajouter au panier
                             </button>
                         </div>
@@ -310,6 +311,7 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/produits.json"></script>
 </body>
 
 </html>

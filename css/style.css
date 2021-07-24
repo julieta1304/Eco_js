@@ -79,8 +79,7 @@ header {
   header .nav {
     display: flex;
     position: relative;
-    margin-top: 0.5em;
-    margin-left: auto; }
+    margin-top: 0.5em; }
     header .nav .nav-link {
       color: black;
       font-family: "Handlee", cursive;
@@ -90,6 +89,42 @@ header {
       header .nav .nav-link:hover {
         text-decoration-line: underline;
         color: black; }
+    header .nav .dropdown-menu {
+      height: auto;
+      width: 100%; }
+      header .nav .dropdown-menu .container__boutique--card {
+        width: 100%; }
+        header .nav .dropdown-menu .container__boutique--card .container__boutique--card-title {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin: 1;
+          color: black;
+          font-family: "Comfortaa", cursive;
+          font-style: normal;
+          font-weight: lighter; }
+        header .nav .dropdown-menu .container__boutique--card .container__home--button {
+          background-color: #296b3c;
+          border: 1px solid #3b9655;
+          border-radius: 0.6em;
+          color: white !important;
+          font-family: "Handlee", cursive;
+          font-style: normal;
+          font-size: 1.2rem;
+          font-weight: lighter;
+          margin-top: 2;
+          width: fit-content;
+          padding: 0.2em;
+          transition: all 0.8s; }
+          header .nav .dropdown-menu .container__boutique--card .container__home--button:hover {
+            color: #3b9655 !important;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #296b3c; }
+          header .nav .dropdown-menu .container__boutique--card .container__home--button a {
+            text-decoration-line: none !important;
+            color: white !important; }
+            header .nav .dropdown-menu .container__boutique--card .container__home--button a:hover {
+              color: #3b9655 !important; }
 
 main .carousel .carousel__title {
   color: white;
@@ -339,9 +374,9 @@ main .container .container__boutique {
     font-family: "Comfortaa", cursive;
     font-style: italic;
     font-weight: normal; }
-  main .container .container__boutique form .btnBoutique {
-    text-align: right !important;
-    margin-bottom: 1rem !important; }
+  main .container .container__boutique .boutonBoutique {
+    text-align: center !important;
+    margin: 2rem 0.5rem !important; }
   main .container .container__boutique .container__boutique--card {
     background-color: #b6d7a8;
     border: solid 1px #3b9655;
@@ -368,8 +403,6 @@ main .container .container__home--button {
   font-size: 1.2rem;
   font-weight: lighter;
   margin-top: 2;
-  margin-right: 1rem;
-  float: left;
   width: fit-content;
   padding: 0.2em;
   transition: all 0.8s;

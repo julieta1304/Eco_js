@@ -1,28 +1,5 @@
-
-// Cuando aprieta los botones por categoria para filtrar funciona pero despues cundo quiero agregar el producto no lo agrega solo cuando estan todos los productos si 
 window.onload = () => {
     renderProduits(produits);
-    // boton agregar al carrito con evento
-    const btnAjouterAuPanier = document.querySelectorAll(
-        '.btnAjouterPanier'
-    );
-    btnAjouterAuPanier.forEach(
-        (btn) => btn.addEventListener("click", (id) => ajouterAuPanier(id))
-    );
-    // boton eliminar del carrito con evento
-    const btnSupprimerAuPanier = document.querySelectorAll(
-        '.btnSupprimerPanier'
-    );
-    btnSupprimerAuPanier.forEach(
-        (btn) => btn.addEventListener("click", (id) => supprimerAuPanier(id)),
-    );
-    const btnSupprimer = document.querySelectorAll(
-        'btnSupprimer'
-    );
-    // Aca crée el boton de eliminar pero no me esta tomando la funcion ni el estilo de css como todos los botones, nosé que onda
-    btnSupprimer.forEach(
-        (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
-    );
 }
 // Método ajax
 $.ajax({
@@ -203,7 +180,6 @@ const produits = [
         categorie: 'Bébés et Femmes'
     }
 ]
-console.log(produits);
 // Array del carrito vacio inicial y en el localStorage
 let panier = getLocalStorage("listeProduitsPanier") || [];
 console.log(panier);
@@ -247,7 +223,6 @@ const ajouterAuPanier = (id) => {
     saveInLocalStorage("listeProduitsPanier", panier);
     renderPanier(panier)
 };
-console.log(panier);
 
 // Renderizar los productos cargados al carrito en el HTML
 const renderPanier = (panier) => {
@@ -261,23 +236,43 @@ const renderPanier = (panier) => {
             panierDiv.innerHTML = `<p> Panier vide - Aucun produit </p>`;
             return;
         }
-        // No sé al final aca como poner que total quede en la ventana del carrito pero solo uno en general, porque si lo pongo en el for each es a cada producto
         panier.forEach(produit => {
             html = `
-            <div class="produitsPanier text-center col-sm-12 col-md-6 col-lg-4">
-                <h4>
-                ${produit.nom}
-                </h4>
-                <p>${produit.prix}€</p>
-                <button type="button" class="btnSupprimer container__home--button" value=${produit.id}">Supprimer</button>
+            <div
+                class="container__boutique--card img-prod${produit.id}"
+                id="80">
+                <div class="card-body">
+                        <h4 class="container__boutique--card-title">${produit.nom}
+                        </h4>
+                        <p class="container__boutique--card-title">${produit.prix}€
+                        </p>
+                        <button
+                            type="button"
+                            class="btnSupprimer container__home--button"
+                            id="supprimerPanier"
+                            value="${produit.id}">Supprimer
+                        </button>
+                </div>
             </div>
             `;
             panierDiv.innerHTML += html;
         });
         console.log(panier);
     }
-};
-console.log(panier);
+    // Boton de eliminar producto del carrito en el carrito 
+const btnSupprimer = document.querySelectorAll(
+    'btnSupprimer'
+);
+btnSupprimer.forEach(
+    (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
+);
+    let total = 0;
+    for (let i = 0; i < panier.length; i++) {
+        total += panier[i].price
+    }
+    panierDiv.innerHTML += `<h1>${total}</h1>`;
+    console.log(total);
+}
 // Funcion para eliminar productos del carrito de compras
 const supprimerAuPanier = (id) => {
     const chercherProduitAuPanier = panier.filter(produit => produit.id != id.target.value);
@@ -289,7 +284,9 @@ const supprimerAuPanier = (id) => {
     renderPanier(panier);
     console.log(id.target.value);
 }
-console.log(panier);
+
+
+
 
 // jQuery, se crean 4 botones para poder filtrar los productos por categorias
 // Boton del Baño con selector avanzado
@@ -306,7 +303,6 @@ const boutonTousLesProduits = $('form button:last-child');
 // Agregar método on click a los botones utilizando jQuery
 $('#bouton').click (function renderProduits(produits) {
     produits.preventDefault();
-    console.log(produits);
 })
 $('#bouton').click(function produitsPourCategorie(value) {
     value.preventDefault();
@@ -340,7 +336,6 @@ renderProduits = () => {
                 produitsDiv.innerHTML += container;
             });
         } else {
-            console.log("entro");
             filterCategories.forEach((produit) => {
                 container = `<div class="container__boutique--card img-prod${produit.id} col-sm-12 col-md-6 col-lg-4">
                                 <div class="card-body">
@@ -359,5 +354,15 @@ renderProduits = () => {
                 produitsDiv.innerHTML += container;
             });
         }
+        // boton agregar producto al carrito de compras
+        const btnAjouterAuPanier = document.querySelectorAll(".btnAjouterPanier");
+        btnAjouterAuPanier.forEach((btn) =>
+            btn.addEventListener("click", (id) => ajouterAuPanier(id))
+        );
+        // boton eliminar producto del carrito de compras
+        const btnSupprimerAuPanier = document.querySelectorAll(".btnSupprimerPanier");
+        btnSupprimerAuPanier.forEach((btn) =>
+            btn.addEventListener("click", (id) => supprimerAuPanier(id))
+        );
     }
 };

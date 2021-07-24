@@ -116,7 +116,6 @@ header {
         position: relative;
         margin: {
             top: 0.5em;
-            left: auto;
         }
         .nav-link {
             color: $color-general;
@@ -131,7 +130,54 @@ header {
                 color: $color-general;
             }
         }
+        .dropdown-menu {
+            height: auto;
+            width: 100%;
+            .container__boutique--card {
+                width: 100%;
+                .container__boutique--card-title{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin: 1;
+                color: $color-general;
+                font: {
+                    family: $font-secondary;
+                    style: normal;
+                    weight: lighter;
+                }
+            }
+            .container__home--button {
+                background-color: $bg-color-btt;
+                border: 1px solid $color-principal;
+                border-radius: $borderRadius-btn;
+                color: $color-titles!important;
+                font: {
+                    family: $font-principal;
+                    style: normal;
+                    size: $font-general;
+                    weight: lighter;
+                }
+                margin-top: 2;
+                width: fit-content;
+                padding: $padding-btn;
+                transition: all 0.8s;
+                &:hover {
+                    color: $color-principal!important;
+                    background-color: $bg-color-hd-ft;
+                    border: 1px solid $bg-color-btt;
+                }
+                a {
+                    text-decoration-line: none!important;
+                    color: $color-titles!important;
+                    &:hover {
+                        color: $color-principal!important;
+                    }
+                }
+            }
+        }
     }
+}
 }
 
 // INDEX
@@ -295,9 +341,9 @@ main {
                     weight: normal;
                 }
             }
-            form .btnBoutique {
-                text-align: right!important;
-                margin-bottom: 1rem!important;
+            .boutonBoutique {
+                text-align: center!important;
+                margin: 2rem 0.5rem!important;
             }
             .container__boutique--card {
                 background-color: $bg-color-pages;
@@ -333,8 +379,6 @@ main {
                 weight: lighter;
             }
             margin-top: 2;
-            margin-right: 1rem;
-            float: left;
             width: fit-content;
             padding: $padding-btn;
             transition: all 0.8s;

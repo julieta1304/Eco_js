@@ -130,11 +130,9 @@ header {
                 color: $color-general;
             }
         }
-        .dropdown-menu {
-            height: auto;
-            width: 100%;
-            .container__boutique--card {
+            .modal-content {
                 width: 100%;
+                height: auto;
                 .container__boutique--card-title{
                 display: flex;
                 flex-direction: row;
@@ -177,7 +175,6 @@ header {
             }
         }
     }
-}
 }
 
 // INDEX

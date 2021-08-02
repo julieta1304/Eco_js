@@ -2,15 +2,18 @@ window.onload = () => {
     renderProduits(produits);
 }
 // Método ajax
-$.ajax({
-    method: 'GET',
-    // Mi array de productos como base de datos en JSON
-    url: '../js/produits.json',
-}).done((produits) => {
-    console.log(produits);
-}).fail((erreur) => {
-    console.log(erreur);
-});
+$
+    .ajax({
+        method: 'GET',
+        // Mi array de productos como base de datos en JSON
+        url: '../js/produits.json'
+    })
+    .done((produits) => {
+        console.log(produits);
+    })
+    .fail((erreur) => {
+        console.log(erreur);
+    });
 
 // Funciones de LocalStorage
 function getLocalStorage(key) {
@@ -237,45 +240,58 @@ const renderPanier = (panier) => {
             return;
         }
         panier.forEach(produit => {
-            html = `
+            html = `<div
+                                        class="modal fade"
+                                        id="exampleModal"
+                                        tabindex="-1"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div id="80">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" >
+                                                        <div>
+                                                            <p class="container__boutique--card-title">Produit</p>
+                                                            <p class="container__boutique--card-title">${produit.nom}</p>
+                                                            <p class="container__boutique--card-title">Prix</p>
+                                                            <p class="container__boutique--card-title">${produit.prix}€</p>
+                                                            <p class="container__boutique--card-title">Supprimer</p>
+                                                            <button type="button" class="btnSupprimer container__home--button" id="supprimerPanier" value="${produit.id}">X</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn container__home--button" data-dismiss="modal">Fermer</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
             <div
-                class="container__boutique--card img-prod${produit.id}"
-                id="80">
-                <div class="card-body">
-                        <h4 class="container__boutique--card-title">${produit.nom}
-                        </h4>
-                        <p class="container__boutique--card-title">${produit.prix}€
-                        </p>
-                        <button
-                            type="button"
-                            class="btnSupprimer container__home--button"
-                            id="supprimerPanier"
-                            value="${produit.id}">Supprimer
-                        </button>
-                </div>
-            </div>
             `;
             panierDiv.innerHTML += html;
         });
         console.log(panier);
     }
-    // Boton de eliminar producto del carrito en el carrito 
-const btnSupprimer = document.querySelectorAll(
-    'btnSupprimer'
-);
-btnSupprimer.forEach(
-    (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
-);
-    let total = 0;
-    for (let i = 0; i < panier.length; i++) {
-        total += panier[i].price
-    }
-    panierDiv.innerHTML += `<h1>${total}</h1>`;
-    console.log(total);
+    // Boton de eliminar producto del carrito en el carrito
+    const btnSupprimer = document.querySelectorAll('btnSupprimer');
+    btnSupprimer.forEach(
+        (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
+    );
+    // Calcular el total de los productos en el carrito let total = 0; for (let i =
+    // 0; i < panier.length; i++) {     total += panier[i].prix }
+    // panierDiv.innerHTML += ` <h1>Total: ${total}</h1> `; console.log(total);
 }
 // Funcion para eliminar productos del carrito de compras
 const supprimerAuPanier = (id) => {
-    const chercherProduitAuPanier = panier.filter(produit => produit.id != id.target.value);
+    const chercherProduitAuPanier = panier.filter(
+        produit => produit.id != id.target.value
+    );
     console.log(chercherProduitAuPanier);
     //Se modifica el carrito original con el nuevo array;
     panier = chercherProduitAuPanier;
@@ -284,9 +300,6 @@ const supprimerAuPanier = (id) => {
     renderPanier(panier);
     console.log(id.target.value);
 }
-
-
-
 
 // jQuery, se crean 4 botones para poder filtrar los productos por categorias
 // Boton del Baño con selector avanzado
@@ -301,7 +314,7 @@ const boutonBebesEtFemmes = $('form #bebesEtFemmes');
 const boutonTousLesProduits = $('form button:last-child');
 
 // Agregar método on click a los botones utilizando jQuery
-$('#bouton').click (function renderProduits(produits) {
+$('#bouton').click(function renderProduits(produits) {
     produits.preventDefault();
 })
 $('#bouton').click(function produitsPourCategorie(value) {
@@ -311,7 +324,7 @@ $('#bouton').click(function produitsPourCategorie(value) {
     );
     renderProduits();
 });
-let filterCategories= [];
+let filterCategories = [];
 renderProduits = () => {
     const produitsDiv = document.getElementById("60");
     if (produitsDiv) {
@@ -356,13 +369,13 @@ renderProduits = () => {
         }
         // boton agregar producto al carrito de compras
         const btnAjouterAuPanier = document.querySelectorAll(".btnAjouterPanier");
-        btnAjouterAuPanier.forEach((btn) =>
-            btn.addEventListener("click", (id) => ajouterAuPanier(id))
+        btnAjouterAuPanier.forEach(
+            (btn) => btn.addEventListener("click", (id) => ajouterAuPanier(id))
         );
         // boton eliminar producto del carrito de compras
         const btnSupprimerAuPanier = document.querySelectorAll(".btnSupprimerPanier");
-        btnSupprimerAuPanier.forEach((btn) =>
-            btn.addEventListener("click", (id) => supprimerAuPanier(id))
+        btnSupprimerAuPanier.forEach(
+            (btn) => btn.addEventListener("click", (id) => supprimerAuPanier(id))
         );
     }
 };

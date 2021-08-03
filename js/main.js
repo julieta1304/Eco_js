@@ -1,3 +1,4 @@
+// Lo que se carga primero en la pagina
 window.onload = () => {
     renderProduits(produits);
 }
@@ -226,66 +227,95 @@ const ajouterAuPanier = (id) => {
     saveInLocalStorage("listeProduitsPanier", panier);
     renderPanier(panier)
 };
-
 // Renderizar los productos cargados al carrito en el HTML
 const renderPanier = (panier) => {
-    const panierDiv = document.getElementById("80");
+    const panierDiv = document.getElementById("90");
     //Si el parametro está vacio o es undefined
     if (panierDiv) {
         panierDiv.innerHTML = "";
         let html = "";
         if (!panier || panier.length === 0) {
             // carrito cuando no haya nada
-            panierDiv.innerHTML = `<p> Panier vide - Aucun produit </p>`;
+            panierDiv.innerHTML = `<p class="container__boutique--card-title text-center"> Panier vide - Aucun produit </p>`;
             return;
         }
         panier.forEach(produit => {
-            html = `<div
-                                        class="modal fade"
-                                        id="exampleModal"
-                                        tabindex="-1"
-                                        aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div id="80">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body" >
-                                                        <div>
-                                                            <p class="container__boutique--card-title">Produit</p>
-                                                            <p class="container__boutique--card-title">${produit.nom}</p>
-                                                            <p class="container__boutique--card-title">Prix</p>
-                                                            <p class="container__boutique--card-title">${produit.prix}€</p>
-                                                            <p class="container__boutique--card-title">Supprimer</p>
-                                                            <button type="button" class="btnSupprimer container__home--button" id="supprimerPanier" value="${produit.id}">X</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn container__home--button" data-dismiss="modal">Fermer</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            <div
+            html = `
+            <div class="table-responsive" id="90">
+            <table class="table table-bordered cart">
+                <thead class="cart__header">
+                    <tr>
+                        <th colspan="2">PRODUIT</th>
+                        <th colspan="1">PRIX</th>
+                        <th colspan="1">SUPPRIMER</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="cart__body">
+                        <td colspan="2" class="cart__meta">
+                        <h4 class="container__boutique--card-title">${produit.nom}</h4>
+                        </td>
+                        <td colspan="1" class="cart__price">
+                        <h4 class="container__boutique--card-title">${produit.prix}€</h4>
+                        </td>
+
+                        <td colspan="1" class="cart__price">
+                        <button type="button" class="btnSupprimer container__home--button" id="supprimerPanier" value="${produit.id}">X</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
             `;
             panierDiv.innerHTML += html;
         });
         console.log(panier);
+        // Calcular el total de los productos en el carrito 
+    let total = 0; for (let i =
+        0; i < panier.length; i++) {     total += panier[i].prix }
+        panierDiv.innerHTML += ` 
+        <div class="table-responsive" id="90">
+        <table class="table table-bordered cart">
+            <thead class="cart__header">
+                <tr>
+                    <th colspan="1">TOTAL</th>
+                    <th colspan="1">VIDER PANIER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <div class="cart__total">
+                            <h4 class="container__boutique--card-title">${total}€</h4>
+                        </div>
+                    </td> 
+                    <td colspan="1">
+                        <div class="cart__total">
+                            <button type="button" id="btnViderPanier" class="container__home--button btnViderPanier">
+                                Vider
+                            </button>
+                        </div>
+                    </td> 
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        `; 
+        console.log(total);
     }
     // Boton de eliminar producto del carrito en el carrito
-    const btnSupprimer = document.querySelectorAll('btnSupprimer');
+    const btnSupprimer = document.querySelectorAll('.btnSupprimer');
     btnSupprimer.forEach(
         (btn) => btn.addEventListener('click', (id) => supprimerAuPanier(id)),
     );
-    // Calcular el total de los productos en el carrito let total = 0; for (let i =
-    // 0; i < panier.length; i++) {     total += panier[i].prix }
-    // panierDiv.innerHTML += ` <h1>Total: ${total}</h1> `; console.log(total);
+    // boton vaciar carrito de compras
+    const btnVider = document.querySelectorAll(".btnViderPanier");
+    btnVider.forEach(
+        (btn) => btn.addEventListener("click", () => viderPanier())
+    );
 }
 // Funcion para eliminar productos del carrito de compras
 const supprimerAuPanier = (id) => {
@@ -300,6 +330,15 @@ const supprimerAuPanier = (id) => {
     renderPanier(panier);
     console.log(id.target.value);
 }
+// Funcion para vaciar el carrito de compras
+function viderPanier() {
+   // Limpiamos los productos guardados
+    panier = [];
+   // Renderizamos los cambios
+    renderPanier(panier);
+    console.log(panier);
+}
+
 
 // jQuery, se crean 4 botones para poder filtrar los productos por categorias
 // Boton del Baño con selector avanzado
@@ -317,6 +356,7 @@ const boutonTousLesProduits = $('form button:last-child');
 $('#bouton').click(function renderProduits(produits) {
     produits.preventDefault();
 })
+// Filtrado de los productos por categorias
 $('#bouton').click(function produitsPourCategorie(value) {
     value.preventDefault();
     filterCategories = produits.filter(
@@ -324,6 +364,7 @@ $('#bouton').click(function produitsPourCategorie(value) {
     );
     renderProduits();
 });
+// Renderizar los productos por categorias
 let filterCategories = [];
 renderProduits = () => {
     const produitsDiv = document.getElementById("60");

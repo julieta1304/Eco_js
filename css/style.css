@@ -79,7 +79,8 @@ header {
   header .nav {
     display: flex;
     position: relative;
-    margin-top: 0.5em; }
+    margin-top: 0.5em;
+    margin-left: auto }
     header .nav .nav-link {
       color: black;
       font-family: "Handlee", cursive;
@@ -89,41 +90,6 @@ header {
       header .nav .nav-link:hover {
         text-decoration-line: underline;
         color: black; }
-      header .nav .modal-content {
-        width: 100%;
-        height: auto;
-        text-align: center; }
-        header .nav .modal-content .container__boutique--card-title {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          margin: 1;
-          color: black;
-          font-family: "Comfortaa", cursive;
-          font-style: normal;
-          font-weight: lighter; }
-        header .nav .modal-content .container__home--button {
-          background-color: #296b3c;
-          border: 1px solid #3b9655;
-          border-radius: 0.6em;
-          color: white !important;
-          font-family: "Handlee", cursive;
-          font-style: normal;
-          font-size: 1.2rem;
-          font-weight: lighter;
-          margin-top: 2;
-          width: fit-content;
-          padding: 0.2em;
-          transition: all 0.8s; }
-          header .nav .modal-content .container__home--button:hover {
-            color: #3b9655 !important;
-            background-color: rgba(255, 255, 255, 0.7);
-            border: 1px solid #296b3c; }
-          header .nav .modal-content .container__home--button a {
-            text-decoration-line: none !important;
-            color: white !important; }
-            header .nav .modal-content .container__home--button a:hover {
-              color: #3b9655 !important; }
 
 main .carousel .carousel__title {
   color: white;
@@ -616,17 +582,6 @@ main .container__internal .grid {
     margin-left: 0.8rem;
     margin-right: 0.8rem; }
 
-main .container__panier--title {
-  color: white;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  padding: 1.5em 0 1em 0;
-  text-align: center;
-  font-family: "Comfortaa", cursive;
-  font-size: 1.3rem;
-  font-style: italic;
-  font-weight: normal; }
-
 main .table-responsive .table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -642,7 +597,24 @@ main .table-responsive .table {
     font-style: normal;
     font-weight: 300;
     text-align: center;
-    padding: 0.1rem; }
+    padding: 0.1rem; 
+  }
+  main .table-responsive .table .cart__body .container__home--button {
+    background-color: rgba(255, 255, 255, 0.7)!important;
+    border: 1px solid #3b9655;
+    color: #3b9655 !important;
+    border-radius: 0.6em;
+    font-family: "Handlee", cursive;
+    font-style: normal;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    text-align: center;
+    text-decoration-line: none;
+    width: fit-content;
+    padding: 0.2em;
+    transition: all 0.8s;
+    cursor: pointer;
+    margin-left: 1em;}
 
 .pieDePagina {
   width: 100% !important;

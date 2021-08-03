@@ -41,8 +41,7 @@
         "stock": "7",
         "fraisDenvoi": "5",
         "categorie": "Salle de Bains"
-    },
-    {
+    }, {
         "id": "7",
         "nom": "Éponge de coco",
         "prix": 14.35,
@@ -84,8 +83,7 @@
         "stock": "11",
         "fraisDenvoi": "5",
         "categorie": "Cuisine"
-    },
-    {
+    }, {
         "id": "13",
         "nom": "Sac réutilisables",
         "prix": "17.40",
@@ -106,8 +104,7 @@
         "stock": "20",
         "fraisDenvoi": "5",
         "categorie": "Maison"
-    },
-    {
+    }, {
         "id": "16",
         "nom": "Couches bébé lavables",
         "prix": 12.50,

@@ -109,42 +109,6 @@
                                             Contact
                                         </a>
                                     </li>
-                                    <button type="button" data-toggle="modal" data-target="#exampleModal">
-                                        <img src="../media/icon-panier.png" width="30" height="30" alt="panier">
-                                    </button>
-
-                                    <div
-                                        class="modal fade"
-                                        id="exampleModal"
-                                        tabindex="-1"
-                                        aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div id="80">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body" >
-                                                        <div>
-                                                            <p class="container__boutique--card-title"></p>
-                                                            <p class="container__boutique--card-title"></p>
-                                                            <p class="container__boutique--card-title"></p>
-                                                            <p class="container__boutique--card-title"></p>
-                                                            <p class="container__boutique--card-title"></p>
-                                                            <button type="button" class="btnSupprimer container__home--button" id="supprimerPanier" value="${produit.id}"></button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn container__home--button" data-dismiss="modal"></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </ul>
 
                             </div>
@@ -163,14 +127,16 @@
 
             <!--CONTAINER-->
             <div class="container">
-
                 <div class="container__boutique">
-
                     <!------TITLE-------->
                     <h2 class="container__boutique--title animate__animated animate__heartBeat">
                         Nos produits zéro déchets
                     </h2>
-
+                    <aside>
+                        <div class="table-responsive" id="90">
+                            <table class="table table-bordered cart"></table>
+                        </div>
+                    </aside>
                     <form id="bouton" class="boutonBoutique">
                         <button
                             id="salleDeBains"
@@ -193,7 +159,6 @@
                 </div>
 
                 <div class="row container__boutique" id="60">
-
                     <!-- PRODUCT 1 -->
                     <div class="container__boutique--card img-prod col-sm-12 col-md-6 col-lg-4">
                         <!-- IMAGE PRODUCT 1 -->
@@ -212,9 +177,7 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
         </main>
